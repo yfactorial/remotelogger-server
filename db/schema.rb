@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090401132240) do
+ActiveRecord::Schema.define(:version => 20090401185001) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "applications", :force => true do |t|
     t.integer  "account_id"
@@ -35,5 +41,16 @@ ActiveRecord::Schema.define(:version => 20090401132240) do
   add_index "statements", ["application_id"], :name => "index_statements_on_application_id"
   add_index "statements", ["level"], :name => "index_statements_on_level"
   add_index "statements", ["logged_at", "created_at"], :name => "index_statements_on_logged_at_and_created_at"
+
+  create_table "users", :force => true do |t|
+    t.integer "account_id",       :null => false
+    t.string  "email",            :null => false
+    t.string  "salt",             :null => false
+    t.string  "crypted_password", :null => false
+    t.string  "token",            :null => false
+  end
+
+  add_index "users", ["account_id"], :name => "index_users_on_account_id"
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

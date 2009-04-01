@@ -1,5 +1,6 @@
 class Application < ActiveRecord::Base
   
+  belongs_to :account
   has_many :statements, :dependent => :delete_all
   
   validates_presence_of :name, :token
