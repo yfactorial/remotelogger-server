@@ -13,6 +13,7 @@ set :scm,           :git
 # This is the same database name for all environments
 set :production_database,'RemoteLogger_production'
 
+set :environment_dbhost, 'localhost'
 set :environment_host, 'localhost'
 set :deploy_via, :remote_cache
 
@@ -38,6 +39,7 @@ task :labs do
   set :user,          'deploy'
   set :password,      'meeyIf05FK'
   set :runner,        'deploy'
+  set :rails_env,     'production'
 end
 
 
