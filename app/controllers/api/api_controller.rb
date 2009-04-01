@@ -9,7 +9,7 @@ module Api
   
     #-- Authentication/Authorization helpers
     
-    def current_app
+    def current_application
       @application
     end
     
@@ -27,7 +27,7 @@ module Api
     #-- Authentication/Authorization filters
   
     def require_app_authentication
-      if !current_app or !current_device_id
+      if !current_application or !current_device_id
         respond_to do |wants|
           message = 'Application token or device identifier were missing and/or invalid'
           wants.html { render :text => message, :status => 401 }

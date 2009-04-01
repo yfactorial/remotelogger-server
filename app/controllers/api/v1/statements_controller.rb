@@ -5,7 +5,13 @@ module Api
       
       make_resourceful do
         
-        actions :create
+        actions :create, :show
+
+        response_for(:show) do |format|
+          format.html { render :text => current_object }
+          format.xml { render :xml => current_object }
+          format.js { render :json => current_object }
+        end
 
         response_for(:create) do |format|
           format.html { render :text => 'Statement successfully created', :status => :created }
@@ -24,6 +30,10 @@ module Api
       
       def build_object
         @current_object ||= current_application.statements.build(object_parameters)
+      end
+      
+      def object_parameters
+        (params[current_model_name.underscore] || {}).merge(:device_id => current_device_id)
       end
     end
   end
