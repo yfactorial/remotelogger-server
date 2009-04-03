@@ -1,0 +1,5 @@
+- page_title current_application ? "Recent Activity in #{current_application}" : 'Recent Activity'
+
+= render current_objects
+
+= will_paginate current_objects

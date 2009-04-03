@@ -10,8 +10,8 @@ module NavigationHelpers
       register_path
     when /new application page/
       new_my_application_path
-    when /the my dashboard page/
-      new_my_application_path
+    when /my dashboard page/
+      dashboard_path
     when /the edit account page/
       edit_my_account_path
     else

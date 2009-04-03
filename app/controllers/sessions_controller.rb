@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     response_for :create do |wants|
       wants.html do
         flash[:notice] = "You've successfully logged in."
-        redirect_back_or my_dashboard_path
+        redirect_back_or dashboard_path
       end
     end
     

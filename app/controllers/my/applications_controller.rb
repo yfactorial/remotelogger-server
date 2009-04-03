@@ -6,13 +6,17 @@ module My
   
     make_resourceful do
       
-      actions :index, :new, :create
+      actions :index, :show, :new, :create
       
       response_for :create do |wants|
         wants.html do
           flash[:notice] = "You've successfully created the \"#{current_object}\" application"
           redirect_back_or setup_my_application_path(current_object)
         end
+      end
+      
+      response_for :show do |wants|
+        wants.html { redirect_to my_application_statements_path(current_object)}
       end
     end
     

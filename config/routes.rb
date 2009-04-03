@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register 'register', :controller => 'users', :action => 'new'
   map.login 'login', :controller => 'sessions', :action => 'new'
   map.logout 'logout', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :delete }
+  map.dashboard 'dashboard', :controller => 'my/statements'
   
   # Standard resources
   map.resources :sessions, :only => [:new, :create, :destroy]
@@ -23,9 +24,12 @@ ActionController::Routing::Routes.draw do |map|
   
   # When logged in, everything happens under the 'my' namespace
   map.namespace :my do |my|
-    my.resource :dashboard, :only => [:show]
-    my.resource :account, :only => [:show, :edit, :update]
-    my.resources :applications, :only => [:index, :new, :create],
-      :member => { :setup => :get }
+    my.resource :account, :only => [:show, :edit, :update] do |account|
+      account.resources :statements, :only => [:index]
+    end
+    my.resources :applications, :only => [:index, :show, :new, :create],
+      :member => { :setup => :get } do |application|
+      application.resources :statements, :only => [:index]
+    end
   end
 end

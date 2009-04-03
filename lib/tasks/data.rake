@@ -6,18 +6,16 @@ namespace :data do
     Factory.find_definitions
   end
   
-  task :load => ['load:users']
-  
-  namespace :load do
-    
-    task :users => :factories do
-      5.times do
-        user = Factory(:user)
-        puts "Creating user: #{user}"
-      end
-    end
-        
+  task :load => :factories do
+    account = Factory(:account, :name => 'Test Company')    
+    5.times { puts "Creating user: #{Factory(:user, :account => account)}" }
+    2.times do
+      app = Factory(:application, :account => account)
+      puts "Creating app: #{app}"
+      20.times { Factory(:statement, :application => app)}
+    end    
   end
+        
 end
 
 def prevent_production

@@ -23,8 +23,17 @@ Then /^I should be logged in as "(.*)"$/ do |email|
   controller.current_user.email.should == email
 end
 
-def app_for(app_name)
-  Application.find_by_name(app_name) || Factory(:application, :name => app_name)
+def app_for(app_name, account_name = nil)
+  if account_name
+    account = account_for(account_name)
+    account.applications.find_by_name(app_name) || Factory(:application, :name => app_name, :account => account)
+  else
+    Application.find_by_name(app_name) || Factory(:application, :name => app_name)
+  end
+end
+
+def account_for(account_name)
+  Account.find_by_name(account_name) || Factory(:account, :name => account_name)
 end
 
 def basic_authenticate(device_id, app_name)

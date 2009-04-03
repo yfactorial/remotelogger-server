@@ -7,6 +7,9 @@ class Statement < ActiveRecord::Base
   before_validation_on_create :normalize_level
   before_create :generate_logged_at
   
+  # TODO: Having a 'recent' named scope to do this barfs when paginated
+  # default_scope :order => 'logged_at DESC, created_at DESC'
+  
   private
   
   def normalize_level

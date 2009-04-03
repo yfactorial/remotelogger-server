@@ -1,0 +1,9 @@
+= statement.level
+= statement.message
+= statement.logged_at
+
+/ No need to be redundant if already on an app-specific page
+- unless current_application
+  in
+  = link_to statement.application, my_application_path(statement.application)
+%br/

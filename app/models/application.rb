@@ -1,7 +1,7 @@
 class Application < ActiveRecord::Base
   
   belongs_to :account
-  has_many :statements, :dependent => :delete_all
+  has_many :statements, :dependent => :delete_all, :order => 'statements.logged_at DESC, statements.created_at DESC, id DESC'
   
   validates_presence_of :name, :token
   validates_uniqueness_of :token

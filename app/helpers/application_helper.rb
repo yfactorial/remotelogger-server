@@ -27,4 +27,9 @@ module ApplicationHelper
   def auth_token
     (protect_against_forgery? ? form_authenticity_token : nil)
   end
+  
+  # Get the current app if we're viewing an app specific page
+  def current_application
+    @current_application ||= Application.find(params[:application_id]) if params[:application_id]
+  end
 end
