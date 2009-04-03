@@ -1,0 +1,9 @@
+- page_title 'Edit My Account'
+
+- form_for current_object, :url => my_account_path do |f|
+
+  = render :partial => '/users/form', :locals => { :f => f }
+  
+  = submit_tag 'Update'
+  
+= link_to 'Cancel', my_account_path

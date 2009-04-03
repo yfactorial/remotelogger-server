@@ -1,0 +1,16 @@
+= f.error_messages
+
+= f.label :email
+= f.text_field :email
+%br/
+
+- if not f.object.new_record?
+  %p Leave password fields blank if you want to keep your current values
+  
+= f.label :password
+= f.password_field :password
+%br/
+
+= f.label :password_confirmation, 'Confirm Password'
+= f.password_field :password_confirmation
+%br/

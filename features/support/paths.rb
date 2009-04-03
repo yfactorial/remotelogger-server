@@ -11,7 +11,9 @@ module NavigationHelpers
     when /new application page/
       new_my_application_path
     when /the my dashboard page/
-      my_dashboard_path
+      new_my_application_path
+    when /the edit account page/
+      edit_my_account_path
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in features/support/paths.rb"

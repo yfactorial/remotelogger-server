@@ -1,0 +1,8 @@
+- page_title 'My Account'
+
+%p
+  Email:
+  = mail_to current_object.email
+  %br/
+  
+= link_to 'Edit', edit_my_account_path
