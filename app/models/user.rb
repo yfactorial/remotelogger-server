@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
   
   belongs_to :account
   
-  validates_presence_of :email, :token, :crypted_password, :salt
+  validates_presence_of :email, :token, :crypted_password, :salt, :account
   
-  before_validation :hash_password
-  before_validation :generate_token
+  before_validation :hash_password, :generate_token
+  before_validation_on_create :generate_account
   
   def to_s; email; end
   
@@ -20,5 +20,10 @@ class User < ActiveRecord::Base
   
   def generate_token
     self.token = ActiveSupport::SecureRandom.hex(12) if token.nil?
+  end
+  
+  # Create stub account for now until we have full account support
+  def generate_account
+    self.account = Account.create(:name => self.email)
   end
 end

@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20090401185001) do
     t.string  "salt",             :null => false
     t.string  "crypted_password", :null => false
     t.string  "token",            :null => false
+    t.string  "time_zone"
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"

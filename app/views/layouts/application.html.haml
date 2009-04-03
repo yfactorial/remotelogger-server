@@ -1,0 +1,20 @@
+!!! Strict
+%html{:xmlns=>"http://www.w3.org/1999/xhtml"}
+  %head
+    %title= "RemoteLogger: #{(yield :head_title) || (yield :page_title)}"
+    = stylesheet_link_tag 'http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css', 'http://yui.yahooapis.com/2.7.0/build/base/base-min.css'
+    
+  %body
+    #doc4
+      #hd
+        - if !logged_in?
+          = link_to 'Register', register_path
+        
+        %h3= "#{yield :page_title}"
+        
+        - if flash_messages?
+          #messages
+            = flash_messages
+      #bd
+        = yield
+      #ft

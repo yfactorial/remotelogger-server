@@ -4,9 +4,10 @@ module NavigationHelpers
     
     when /the homepage/
       root_path
-    
-    # Add more page name => path mappings here
-    
+    when /the register page/
+      register_path
+    when /new application page/
+      new_my_application_path
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in features/support/paths.rb"

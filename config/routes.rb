@@ -6,4 +6,15 @@ ActionController::Routing::Routes.draw do |map|
       v1.resources :statements, :only => [:show, :create]
     end
   end
+  
+  # Convenience paths
+  map.register 'register', :controller => 'users', :action => 'new'
+  
+  # Standard resources
+  map.resources :users, :only => [:new, :create]
+  
+  # When logged in, everything happens under the 'my' namespace
+  map.namespace :my do |my|
+    my.resources :applications, :only => [:new]
+  end
 end
