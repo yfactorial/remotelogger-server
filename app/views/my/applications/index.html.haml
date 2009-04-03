@@ -1,0 +1,13 @@
+- page_title 'My Applications'
+
+%table
+  %tr
+    %th Application
+    %th Options
+  
+  - for application in current_objects do
+    %tr
+      %td= application
+      %td
+      
+= link_to 'Create new Application', new_my_application_path

@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= logged_in? ? User.find(session[:user_id]) : nil
   end
+
+  def current_account
+    @current_account ||= current_user.account
+  end
   
   def logged_in?
     (@logged_in ||= (!session[:user_id].blank? and User.exists?(session[:user_id])) ? 1 : 0) > 0

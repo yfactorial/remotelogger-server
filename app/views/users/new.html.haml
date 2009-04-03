@@ -1,6 +1,8 @@
 - page_title 'Register'
 
 - form_for current_object do |f|
+
+  = f.error_messages
   
   = f.label :email
   = f.text_field :email

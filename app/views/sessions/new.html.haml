@@ -1,0 +1,16 @@
+- page_title 'Login'
+
+- form_tag sessions_path do
+
+  = label_tag :email
+  = text_field_tag :email, params[:email]
+  %br/
+  
+  = label_tag :password
+  = password_field_tag :password, params[:password]
+  %br/
+
+  .submit
+    = submit_tag 'Login'
+    = link_to 'Register', register_path
+    / = link_to 'Forgot your password?', reset_path

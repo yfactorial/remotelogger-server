@@ -9,6 +9,10 @@ class Application < ActiveRecord::Base
   
   before_validation :generate_token
   
+  named_scope :for, lambda { |user| {:conditions => { :account_id => user.account_id }} }
+  
+  def to_s; name; end
+  
   private
   
   def generate_token

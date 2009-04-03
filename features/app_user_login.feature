@@ -8,5 +8,5 @@ Feature: User login
     And I fill in "Email" with "ryan@test.com"
     And I fill in "Password" with "password"
     When I press "Login"
-    Then I should be logged in
-    And I should be on the "accounts/show" page
+    Then I should be logged in as "ryan@test.com"
+    And I should be on the my dashboard page

@@ -8,5 +8,5 @@ Feature: New application registration
     And I fill in "Name" with "Test App"
     When I press "Create"
     Then there should be a registered application "Test App" for "Test Company"
-    And I should be on the "applications/info" page
+    And I should now be on the app setup page for "Test App"
     And I should see the application token for "Test App"

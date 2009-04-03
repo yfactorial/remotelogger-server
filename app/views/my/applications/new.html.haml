@@ -1,1 +1,13 @@
 - page_title('Create a New Application')
+
+- form_for current_object, :url => my_applications_path do |f|
+
+  = f.error_messages
+  
+  = f.label :name
+  = f.text_field :name
+  %br/
+  
+  = submit_tag 'Create'
+  %br/
+  = link_to 'Cancel', my_dashboard_path
