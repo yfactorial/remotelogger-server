@@ -1,6 +1,6 @@
 = statement.level
 = statement.message
-= statement.logged_at
+= statement.created_at.to_s(:display)
 
 / No need to be redundant if already on an app-specific page
 - unless current_application

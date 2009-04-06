@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20090406144357) do
   end
 
   add_index "statements", ["application_id"], :name => "index_statements_on_application_id"
+  add_index "statements", ["device_id"], :name => "index_statements_on_device_id"
   add_index "statements", ["level"], :name => "index_statements_on_level"
   add_index "statements", ["logged_at", "created_at"], :name => "index_statements_on_logged_at_and_created_at"
 

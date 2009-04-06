@@ -5,5 +5,6 @@ Factory.define :user do |u|
   u.password 'password'
   u.password_confirmation { |user| user.password }
   u.crypted_password  { |a| User.digest(a.password, a.salt) }
+  u.time_zone 'Eastern Time (US & Canada)'
   u.account { |a| a.association(:account) }
 end
