@@ -16,21 +16,36 @@ Given /^there are (\d+) log statements for "(.*)" of "(.*)"$/ do |num, app_name,
   end
 end
 
+Given /^there are (\d+) log statements on device "(.*)" for "(.*)" of "(.*)"$/ do |num, device_id, app_name, account_name|
+  num.to_i.times do
+    Factory(:statement, :device_id => device_id, :application => app_for(app_name, account_name))
+  end
+end
+
 Given /^I visit the application statements page for "(.*)"$/ do |app_name|
   visit my_application_path(app_for(app_name))
 end
 
 #-- Common --
 
-Then /^I should see the (\d+) set of (\d+) log statements for the "(.*)" account$/ do |page, per_page, account_name|
-  account_for(account_name).statements.paginate(:page => page.to_i, :per_page => per_page.to_i).each do |statement|
+Then /^I should see the (\d+) set of log statements for the "(.*)" account$/ do |page, account_name|
+  account_for(account_name).statements.paginate(:page => page.to_i).each do |statement|
     [:level, :message].each do |attr|
       Then "I should see \"#{statement.send(attr)}\""
     end
   end
 end
-Then /^I should see the (\d+) set of (\d+) log statements for the "(.*)" application$/ do |page, per_page, app_name|
-  app_for(app_name).statements.paginate(:page => page.to_i, :per_page => per_page.to_i).each do |statement|
+
+Then /^I should see the (\d+) set of log statements for the "(.*)" application$/ do |page, app_name|
+  app_for(app_name).statements.paginate(:page => page.to_i).each do |statement|
+    [:level, :message].each do |attr|
+      Then "I should see \"#{statement.send(attr)}\""
+    end
+  end
+end
+
+Then /^I should see the (\d+) set of log statements on device "(.*)" for the "(.*)" application$/ do |page, device_id, app_name|
+  app_for(app_name).statements.on(device_id).paginate(:page => page.to_i).each do |statement|
     [:level, :message].each do |attr|
       Then "I should see \"#{statement.send(attr)}\""
     end
