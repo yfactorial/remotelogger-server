@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   # Let our views use thse methods
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :current_account
   
   # Always watch for redirect_tos
   before_filter :save_redirect_to, :set_timezone

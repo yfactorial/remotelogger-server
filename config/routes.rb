@@ -24,9 +24,12 @@ ActionController::Routing::Routes.draw do |map|
   
   # When logged in, everything happens under the 'my' namespace
   map.namespace :my do |my|
+    
     my.resource :account, :only => [:show, :edit, :update] do |account|
       account.resources :statements, :only => [:index]
+      account.resources :device_labels, :only => [:create, :destroy]
     end
+    
     my.resources :applications, :only => [:index, :show, :new, :create],
       :member => { :setup => :get } do |application|
       application.resources :devices, :except => :all do |device|

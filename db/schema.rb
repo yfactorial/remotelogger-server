@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090401185001) do
+ActiveRecord::Schema.define(:version => 20090406144357) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :null => false
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(:version => 20090401185001) do
 
   add_index "applications", ["account_id"], :name => "index_applications_on_account_id"
   add_index "applications", ["token"], :name => "index_applications_on_token"
+
+  create_table "device_labels", :force => true do |t|
+    t.integer "account_id", :null => false
+    t.string  "label",      :null => false
+    t.string  "device_id",  :null => false
+  end
+
+  add_index "device_labels", ["account_id", "device_id"], :name => "index_device_labels_on_account_id_and_device_id", :unique => true
+  add_index "device_labels", ["account_id", "label"], :name => "index_device_labels_on_account_id_and_label", :unique => true
 
   create_table "statements", :force => true do |t|
     t.integer  "application_id", :null => false

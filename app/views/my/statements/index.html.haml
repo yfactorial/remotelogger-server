@@ -1,4 +1,16 @@
-- page_title current_application ? (current_device ? "Recent Activity in #{current_application} on Device #{current_device}" : "Recent Activity in #{current_application}") : 'Recent Activity'
+- page_title current_application ? (current_device ? "Recent Activity in #{current_application} on #{current_account.label(current_device)}" : "Recent Activity in #{current_application}") : 'Recent Activity'
+
+- if current_device
+  - if current_account.label?(current_device)
+    = link_to 'Remove Device Label', my_account_device_label_path(current_device, :redirect_to => current_path), :method => :delete
+    = "(raw device id: #{current_device})"
+    %br/
+  - else
+    - form_for DeviceLabel.new, :url => my_account_device_labels_path(:redirect_to => current_path) do |f|
+      = f.hidden_field :device_id, :value => current_device
+      = f.label :label, 'Label Device'
+      = f.text_field :label, :size => 10
+      = submit_tag 'label'
 
 = render current_objects
 

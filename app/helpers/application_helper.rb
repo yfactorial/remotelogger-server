@@ -37,4 +37,9 @@ module ApplicationHelper
   def current_device
     @current_device ||= params[:device_id]
   end
+  
+  # Get my current path, accounting for all parameters (like page number etc..)
+  def current_path
+    url_for(params)
+  end
 end
