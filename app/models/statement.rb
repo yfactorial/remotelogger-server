@@ -9,6 +9,7 @@ class Statement < ActiveRecord::Base
   
   # TODO: Having a 'recent' named scope to do this barfs when paginated
   # default_scope :order => 'logged_at DESC, created_at DESC'
+  named_scope :on, lambda { |device_id| { :conditions => { :device_id => device_id }} }
   
   private
   

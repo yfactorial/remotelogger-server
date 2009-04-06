@@ -29,6 +29,9 @@ ActionController::Routing::Routes.draw do |map|
     end
     my.resources :applications, :only => [:index, :show, :new, :create],
       :member => { :setup => :get } do |application|
+      application.resources :devices, :except => :all do |device|
+        device.resources :statements, :only => [:index]
+      end
       application.resources :statements, :only => [:index]
     end
   end

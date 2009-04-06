@@ -6,4 +6,9 @@
 - unless current_application
   in
   = link_to statement.application, my_application_path(statement.application)
+  
+/ No need to be redundant if already on an device-specific page
+- unless current_device
+  on device
+  = link_to statement.device_id, my_application_device_statements_path(statement.application, statement.device_id)
 %br/

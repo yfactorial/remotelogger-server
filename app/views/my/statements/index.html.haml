@@ -1,4 +1,4 @@
-- page_title current_application ? "Recent Activity in #{current_application}" : 'Recent Activity'
+- page_title current_application ? (current_device ? "Recent Activity in #{current_application} on Device #{current_device}" : "Recent Activity in #{current_application}") : 'Recent Activity'
 
 = render current_objects
 

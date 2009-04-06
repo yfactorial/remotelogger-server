@@ -32,4 +32,9 @@ module ApplicationHelper
   def current_application
     @current_application ||= Application.find(params[:application_id]) if params[:application_id]
   end
+  
+  # Get the current device if we're viewing a device specific page
+  def current_device
+    @current_device ||= params[:device_id]
+  end
 end

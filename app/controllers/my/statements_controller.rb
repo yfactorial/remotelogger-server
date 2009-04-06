@@ -3,7 +3,6 @@ module My
     
     make_resourceful do      
       actions :index
-      belongs_to :application      
     end
     
     private
@@ -12,7 +11,13 @@ module My
     
     # Get most recent statements for this account
     def current_objects
-      @current_objects ||= parent_object.statements.with(:application).paginate(paging_params)
+      
+      # If we have a device id param then we can filter on it
+      if params[:device_id]
+        @current_objects ||= parent_object.statements.with(:application).on(params[:device_id]).paginate(paging_params)
+      else
+        @current_objects ||= parent_object.statements.with(:application).paginate(paging_params)
+      end
     end
     
     # Parent can either be account (implied) or application (explicit)

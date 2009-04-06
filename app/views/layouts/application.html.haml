@@ -15,6 +15,9 @@
         - else
           = link_to 'Login', login_path
           = link_to 'Register', register_path
+          
+        #bread_crumbs
+          = render :partial => '/layouts/bread_crumbs'
         
         %h3= "#{yield :page_title}"
         
